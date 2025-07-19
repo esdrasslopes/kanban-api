@@ -4,7 +4,11 @@ import { randomUUID } from "crypto";
 
 import { knex } from "../database";
 
-import { createTaskBodySchema, getTaskParamsSchema } from "../types";
+import {
+  createTaskBodySchema,
+  getTaskParamsSchema,
+  updateTaskBodySchema,
+} from "../types";
 
 import { checkSessionIdExists } from "../middlewares/check-session-id-exists";
 
@@ -12,7 +16,7 @@ export const tasksRoutes = async (app: FastifyInstance) => {
   app.post("/", async (request, reply) => {
     const bodyData = createTaskBodySchema.parse(request.body);
 
-    const { status, task, type } = bodyData;
+    const { status, task, type, description, priority } = bodyData;
 
     let sessionId = request.cookies.sessionId;
 
@@ -29,8 +33,10 @@ export const tasksRoutes = async (app: FastifyInstance) => {
       id: randomUUID(),
       session_id: sessionId,
       task,
+      description,
       type,
       status,
+      priority,
     });
 
     return reply.status(201).send();
@@ -61,6 +67,48 @@ export const tasksRoutes = async (app: FastifyInstance) => {
         .first();
 
       reply.status(200).send({ task });
+    }
+  );
+
+  app.patch(
+    "/:id",
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const { id } = getTaskParamsSchema.parse(request.params);
+
+      const { sessionId } = request.cookies;
+
+      const updates = updateTaskBodySchema.parse(request.body);
+
+      if (Object.keys(updates).length === 0) {
+        return reply.status(404).send({ message: "No data was sent" });
+      }
+
+      const updateTask = await knex("tasks")
+        .where({ session_id: sessionId, id })
+        .update({
+          ...updates,
+          updated_at: knex.fn.now(),
+        })
+        .returning("*");
+
+      reply.status(200).send({ updateTask });
+    }
+  );
+
+  app.delete(
+    "/:id",
+    { preHandler: [checkSessionIdExists] },
+    async (request, reply) => {
+      const { id } = getTaskParamsSchema.parse(request.params);
+
+      const { sessionId } = request.cookies;
+
+      await knex("tasks").where({ session_id: sessionId, id }).delete();
+
+      reply.status(200).send({
+        message: "Task deleted successfully",
+      });
     }
   );
 };
