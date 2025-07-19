@@ -1,6 +1,12 @@
-import "dotenv/config";
+import { config } from "dotenv";
 
 import { envSchema } from "../types";
+
+if (process.env.NODE_ENV === "test") {
+  config({ path: ".env.test" });
+} else {
+  config();
+}
 
 const _env = envSchema.safeParse(process.env);
 
