@@ -44,7 +44,7 @@ export const tasksRoutes = async (app: FastifyInstance) => {
 
       const tasks = await knex("tasks").where("session_id", sessionId).select();
 
-      return { tasks };
+      reply.status(200).send({ tasks });
     }
   );
 
