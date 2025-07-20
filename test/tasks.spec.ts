@@ -97,7 +97,7 @@ describe("Tasks router", () => {
       status: "todo",
       type: "refactoration",
       description: "Refatorar código da api do kanban",
-      priority: "high",
+      priority: "medium",
     });
 
     const cookies = task.get("Set-Cookie");
