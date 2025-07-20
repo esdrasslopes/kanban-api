@@ -16,16 +16,16 @@ O projeto utiliza as seguintes tecnologias e bibliotecas:
 
 - **Node.js**: Ambiente de execução JavaScript.
 - **TypeScript**: Superconjunto tipado de JavaScript para maior segurança e escalabilidade do código.
-- [cite_start]**Fastify**[cite: 2, 3]: Framework web rápido e de baixo overhead para construção da API.
-- [cite_start]**Knex.js**[cite: 2, 3]: Construtor de consultas SQL flexível para interagir com o banco de dados.
-- [cite_start]**SQLite3**[cite: 2, 3]: Banco de dados leve e baseado em arquivo, ideal para desenvolvimento e testes.
-- [cite_start]**Zod**[cite: 2, 3]: Biblioteca de declaração e validação de schemas para garantir a integridade dos dados de entrada.
-- [cite_start]**Dotenv**[cite: 2, 3]: Para carregar variáveis de ambiente de arquivos `.env`.
-- [cite_start]**@fastify/cookie**[cite: 2, 3]: Plugin para Fastify que facilita o trabalho com cookies.
-- [cite_start]**Vitest**[cite: 2, 3]: Framework de testes rápido para testes de unidade e integração.
-- [cite_start]**Supertest**[cite: 2, 3]: Biblioteca para testar APIs HTTP, integrando-se bem com o Vitest.
-- [cite_start]**tsx**[cite: 2, 3]: Executa arquivos TypeScript diretamente no Node.js em desenvolvimento e para scripts (como migrations).
-- [cite_start]**tsup**[cite: 2, 3]: Ferramenta de build para compilar o código TypeScript para JavaScript otimizado para produção.
+- **Fastify**: Framework web rápido e de baixo overhead para construção da API.
+- **Knex.js**: Construtor de consultas SQL flexível para interagir com o banco de dados.
+- **SQLite3**: Banco de dados leve e baseado em arquivo, ideal para desenvolvimento e testes.
+- **Zod**: Biblioteca de declaração e validação de schemas para garantir a integridade dos dados de entrada.
+- **Dotenv**: Para carregar variáveis de ambiente de arquivos `.env`.
+- **@fastify/cookie**: Plugin para Fastify que facilita o trabalho com cookies.
+- **Vitest**: Framework de testes rápido para testes de unidade e integração.
+- **Supertest**: Biblioteca para testar APIs HTTP, integrando-se bem com o Vitest.
+- **tsx**: Executa arquivos TypeScript diretamente no Node.js em desenvolvimento e para scripts (como migrations).
+- **tsup**: Ferramenta de build para compilar o código TypeScript para JavaScript otimizado para produção.
 
 ## ✨ Funcionalidades Principais
 
